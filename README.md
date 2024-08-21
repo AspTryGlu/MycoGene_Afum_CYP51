@@ -20,7 +20,7 @@ Example:
 **Note**: Review QC report for the following quality metrics:
 
    | QC Metric                       | Threshold                           |
-   | ------------------------------- |:-----------------------------------:|
+   | ------------------------------- |-------------------------------------|
    | Percentage of identity (pident) | > 95 %                              |
    | Length                          | Similar to the query sequence length|
 
@@ -36,9 +36,8 @@ Example:
 1. Ensure your inputs are placed in the same directory as the MycoGene_v1.0.sh script.
 2. `nohup bash MycoGene_v1.0.sh`
 
-
 # Workflow
-![Flowchart](../images/flowchart2.png)
+![Flowchart]( ./images/flowchart_MycoGene.png)
 
 # Roadmap
 Some potential enhancements and use cases:
