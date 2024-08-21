@@ -1,6 +1,55 @@
-# CDCgov GitHub Organization Open Source Project Template
+# MycoGene: A workflow for extracting specific gene sequences from WGS Illumina paired-end short reads
 
-**Template for clearance: This project serves as a template to aid projects in starting up and moving through clearance procedures. To start, create a new repository and implement the required [open practices](open_practices.md), train on and agree to adhere to the organization's [rules of behavior](rules_of_behavior.md), and [send a request through the create repo form](https://forms.office.com/Pages/ResponsePage.aspx?id=aQjnnNtg_USr6NJ2cHf8j44WSiOI6uNOvdWse4I-C2NUNk43NzMwODJTRzA4NFpCUk1RRU83RTFNVi4u) using language from this template as a Guide.**
+# Description
+
+## Inputs:
+1. `samples-paths.txt`, Plain text file that contains the samples name and paths for clean reads, separated by `:`. One sample per row, no header.  
+Example:
+   ```
+   Sample1:/my-path/sample1_R1.fastq.gz:/my-path/sample1_R2.fastq.gz  
+   Sample2:/my-path/sample2_R1.fastq.gz:/my-path/sample2_R2.fastq.gz
+   ```
+
+2. `query_seq.fasta`, Fasta file that contains protein sequence of the gene of interest.
+
+## Outputs:
+1. `gene_output.fasta`, Fasta file that contains nucleotide sequence of the gene of interest for all samples.
+2. `protein_output.fasta`, Fasta file that contains aminoacid sequence of the protein of interest for all samples.
+3. `QC_report.txt`, Tabular text file with tblastn hits information.
+<br/><br/>
+**Note**: Review QC report for the following quality metrics:
+
+   | QC Metric                       | Threshold                           |
+   | ------------------------------- |:-----------------------------------:|
+   | Percentage of identity (pident) | > 95 %                              |
+   | Length                          | Similar to the query sequence length|
+
+
+## Requirements
+- SPAdes (https://github.com/ablab/spades)  
+- tblastn (https://www.ncbi.nlm.nih.gov/books/NBK569861/)  
+- samtools (https://bioconda.github.io/recipes/samtools/README.html)  
+- EMBOSS transeq (https://anaconda.org/bioconda/emboss)  
+- Clustal omega (https://github.com/GSLBiotech/clustal-omega)  
+
+## Running MycoGene
+1. Ensure your inputs are placed in the same directory as the MycoGene_v1.0.sh script.
+2. `nohup bash MycoGene_v1.0.sh`
+
+
+# Workflow
+![Flowchart](../images/flowchart2.png)
+
+# Roadmap
+Some potential enhancements and use cases:
+1. Use multiples genes of interest as query. Potential use for specie identification with more than one marker. Ex. Genes TEF1, rDNA, RPB2 for Fusarium species identification.
+2. To add BLAST type as a user selection parameter (tblastn or blastn), to perform the analysis using a nucleotide sequence as query. Potential use for recovering noncoding sequence region. Ex. Promotor sequence and tandem repats for CYP51 gene for Aspergillus.
+3. Extend the coordinates by a user defined length to recover the flanking regions of the genes of interest. Potential use for recovering sequence upstream of CYP51 gene for Aspergillus, in order to identified tandem repeats in the promotor regions that could be absent in the query.
+
+# Citations
+If you use MycoGene in your work, please consider this citing repository https://github.com/CDCgov/MycoGene
+
+# CDCgov GitHub Organization Open Source Project
 
 **General disclaimer** This repository was created for use by CDC programs to collaborate on public health related projects in support of the [CDC mission](https://www.cdc.gov/about/organization/mission.htm).  GitHub is not hosted by the CDC, but is a third party website used by CDC and its partners to share information and collaborate on software. CDC use of GitHub does not imply an endorsement of any one particular service, product, or enterprise. 
 
