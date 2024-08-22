@@ -34,7 +34,7 @@ Example:
 
 ## Running MycoGene
 1. Ensure your inputs are placed in the same directory as the MycoGene_v1.0.sh script.
-2. `nohup bash MycoGene_v1.0.sh`
+2. `nohup bash MycoGene_v1.1.sh`
 
 # Workflow
 ![Flowchart]( ./images/flowchart_MycoGene.png)
