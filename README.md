@@ -27,10 +27,10 @@ Example:
    | Length                          | Similar to the query sequence length|
 
 5. MycoGen_Afum_CYP51 generates three additional outputs, HTML files with the vusualization for: 
-   1) gene alignment
-   2) 500 nucleotides upstrean and gene sequenced aligned, for identifing the tandem repeats (TR34, TR46)
-   3) protein alignment colored by mismatches in red and motifs in green where last higtligthed aminoacid is a common mutation associated to azoles resistance (G54X, L98H,Y121F,G138X, P216X, 
-   F219X, M220X, T289A, Y431X, G448X).
+   1) `data_gene_aln.html`, gene alignment
+   2) `data_upstream-CPY51_aln.html`, 500 nucleotides upstrean and gene sequenced aligned, for identifing the tandem repeats (TR34, TR46)
+   3) `data_protein_aln.html`,protein alignment colored by mismatches in red and motifs in green where last higtligthed aminoacid is a common 
+   mutation associated to azoles resistance (G54X, L98H,Y121F,G138X, P216X, F219X, M220X, T289A, Y431X, G448X).
 
 ## Requirements
 - FaQCs (https://github.com/LANL-Bioinformatics/FaQCs)
