@@ -24,14 +24,19 @@ Example:
    | Percentage of identity (pident) | > 95 %                              |
    | Length                          | Similar to the query sequence length|
 
+4. MycoGen_Afum_CPY51 generates three additional outputs, HTML files with the vusualization for: 
+   1) gene aligment
+   2) 500 nucleotides upstrean and gene sequenced aligned, for identifing the tandem repeats (TR34, TR46)
+   3) protein aligment colored by mismatches in red and motifs in green where last higtligthed aminoacid is a common mutation associated to azoles resistance (G54X, L98H,Y121F,G138X, P216X, 
+   F219X, M220X, T289A, Y431X, G448X).
 
 ## Requirements
 - SPAdes (https://github.com/ablab/spades)  
 - tblastn (https://www.ncbi.nlm.nih.gov/books/NBK569861/)  
-- samtools (https://bioconda.github.io/recipes/samtools/README.html)  
-- EMBOSS transeq (https://anaconda.org/bioconda/emboss)  
+- samtools (https://bioconda.github.io/recipes/samtools/README.html)    
 - Clustal omega (https://github.com/GSLBiotech/clustal-omega)  
-
+- mView (https://sourceforge.net/projects/bio-mview/files/bio-mview)
+  
 ## Running MycoGene
 1. Ensure your inputs are placed in the same directory as the MycoGene_v1.0.sh script.
 2. `nohup bash MycoGene_v1.1.sh`
@@ -42,7 +47,7 @@ Example:
 # Roadmap
 Some potential enhancements and use cases:
 1. Use multiples genes of interest as query. Potential use for specie identification with more than one marker. Ex. Genes TEF1, rDNA, RPB2 for Fusarium species identification.
-2. To add BLAST type as a user selection parameter (tblastn or blastn), to perform the analysis using a nucleotide sequence as query. Potential use for recovering noncoding sequence region. Ex. Promotor sequence and tandem repats for CYP51 gene for Aspergillus.
+2. To add BLAST type as a user selection parameter (tblastn or blastn), to perform the analysis using a nucleotide sequence as query. Potential use for recovering noncoding sequence region. Ex. Promotor sequence and tandem repeats for CYP51 gene for Aspergillus.
 3. Extend the coordinates by a user defined length to recover the flanking regions of the genes of interest. Potential use for recovering sequence upstream of CYP51 gene for Aspergillus, in order to identified tandem repeats in the promotor regions that could be absent in the query.
 
 # Citations
