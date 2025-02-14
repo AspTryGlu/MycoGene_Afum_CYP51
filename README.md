@@ -3,19 +3,21 @@
 # Description
 
 ## Inputs:
-1. `samples-paths.txt`, Plain text file that contains the samples name and paths for clean reads, separated by `:`. One sample per row, no header.  
+1. `samples-paths.txt`, Plain text file that contains the samples name and paths for raw reads, separated by `:`. One sample per row, no header.  
 Example:
    ```
    Sample1:/my-path/sample1_R1.fastq.gz:/my-path/sample1_R2.fastq.gz  
    Sample2:/my-path/sample2_R1.fastq.gz:/my-path/sample2_R2.fastq.gz
    ```
 
-2. `query_seq.fasta`, Fasta file that contains protein sequence of the gene of interest.
+2. `query_seq.fasta`, Fasta file that contains nucleotide sequence of the gene CYP51 (AF338659).
+3. `query_aa.fasta`, Fasta file that contains aminoacid sequence of the protein CYP51(AAK73659).
 
 ## Outputs:
-1. `gene_output.fasta`, Fasta file that contains nucleotide sequence of the gene of interest for all samples.
-2. `protein_output.fasta`, Fasta file that contains aminoacid sequence of the protein of interest for all samples.
-3. `QC_report.txt`, Tabular text file with tblastn hits information.
+1. `aln_gene_output.fasta`, Fasta file that contains aligned nucleotide sequence of the gene of interest for all samples.
+2. `aln_protein_output.fasta`, Fasta file that contains aligned aminoacid sequence of the protein of interest for all samples.
+3. `aln_wnoncoding_gene_output.fasta`, Fasta file that contains aligned nucleotide sequence of the gene of interest plus a 500 nucleotides upstream of the coding gene for all samples.Upstream region include the gene promotor for identifing the tandem repeats (TR34, TR46)
+4. `QC_report.txt`, Tabular text file with blastn hits information.
 <br/><br/>
 **Note**: Review QC report for the following quality metrics:
 
@@ -24,22 +26,23 @@ Example:
    | Percentage of identity (pident) | > 95 %                              |
    | Length                          | Similar to the query sequence length|
 
-4. MycoGen_Afum_CPY51 generates three additional outputs, HTML files with the vusualization for: 
-   1) gene aligment
+5. MycoGen_Afum_CYP51 generates three additional outputs, HTML files with the vusualization for: 
+   1) gene alignment
    2) 500 nucleotides upstrean and gene sequenced aligned, for identifing the tandem repeats (TR34, TR46)
-   3) protein aligment colored by mismatches in red and motifs in green where last higtligthed aminoacid is a common mutation associated to azoles resistance (G54X, L98H,Y121F,G138X, P216X, 
+   3) protein alignment colored by mismatches in red and motifs in green where last higtligthed aminoacid is a common mutation associated to azoles resistance (G54X, L98H,Y121F,G138X, P216X, 
    F219X, M220X, T289A, Y431X, G448X).
 
 ## Requirements
+- FaQCs (https://github.com/LANL-Bioinformatics/FaQCs)
 - SPAdes (https://github.com/ablab/spades)  
-- tblastn (https://www.ncbi.nlm.nih.gov/books/NBK569861/)  
+- blast (https://www.ncbi.nlm.nih.gov/books/NBK569861/)  
 - samtools (https://bioconda.github.io/recipes/samtools/README.html)    
 - Clustal omega (https://github.com/GSLBiotech/clustal-omega)  
 - mView (https://sourceforge.net/projects/bio-mview/files/bio-mview)
   
 ## Running MycoGene
-1. Ensure your inputs are placed in the same directory as the MycoGene_v1.0.sh script.
-2. `nohup bash MycoGene_v1.1.sh`
+1. Ensure your inputs are placed in the same directory as the MycoGen_Afum_CYP51.sh script.
+2. `nohup bash MycoGen_Afum_CYP51.sh`
 
 # Workflow
 ![Flowchart]( ./images/flowchart_MycoGene.png)
@@ -48,7 +51,7 @@ Example:
 Some potential enhancements and use cases:
 1. Use multiples genes of interest as query. Potential use for specie identification with more than one marker. Ex. Genes TEF1, rDNA, RPB2 for Fusarium species identification.
 2. To add BLAST type as a user selection parameter (tblastn or blastn), to perform the analysis using a nucleotide sequence as query. Potential use for recovering noncoding sequence region. Ex. Promotor sequence and tandem repeats for CYP51 gene for Aspergillus.
-3. Extend the coordinates by a user defined length to recover the flanking regions of the genes of interest. Potential use for recovering sequence upstream of CYP51 gene for Aspergillus, in order to identified tandem repeats in the promotor regions that could be absent in the query.
+.
 
 # Citations
 If you use MycoGene in your work, please consider this citing repository https://github.com/CDCgov/MycoGene
