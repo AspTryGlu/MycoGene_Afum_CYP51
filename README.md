@@ -31,7 +31,7 @@ Example:
    2) `data_upstream-CPY51_aln.html`, 500 nucleotides upstrean and gene sequenced aligned, for identifing the tandem repeats (TR34, TR46)
    3) `data_protein_aln.html`,protein alignment colored by mismatches in red and motifs in green where last higtligthed aminoacid is a common 
    mutation associated to azoles resistance (G54X, L98H,Y121F,G138X, P216X, F219X, M220X, T289A, Y431X, G448X).
-
+   ![Flowchart]( ./images/aln_mview_img.png)
 ## Requirements
 - FaQCs (https://github.com/LANL-Bioinformatics/FaQCs)
 - SPAdes (https://github.com/ablab/spades)  
