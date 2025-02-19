@@ -1,21 +1,38 @@
 # MycoGene: A workflow for extracting specific gene sequences from WGS Illumina paired-end short reads
 
 # Description
+MycoGene is an innovative workflow for Multi-Locus Sequence Typing (MLST) analysis of fungal organisms, designed to streamline your research. By replacing traditional PCR and Sanger sequencing with WGS and simple bioinformatics, MycoGene significantly reduces time and effort in the lab.
+
+
+This workflow performs quality controls, generates de novo assemblies, and extracts target gene sequences. The FASTA output files are compatible with various downstream analytical tools for build phylogenetic trees and visualize alignments.
+
+
+Among its most useful applications are taxonomic profiling, species identification, and finding mutations linked to antifungal resistance. MycoGene shines particularly in non-model fungi where complete genome annotation is lacking, making it a straight solution for identifying mutation in specific genes when annotate whole-genome variants is unpractical.
 
 ## Inputs:
-1. `samples-paths.txt`, Plain text file that contains the samples name and paths for clean reads, separated by `:`. One sample per row, no header.  
+1. `samples-paths.txt`, Plain text file that contains the samples name and paths for raw reads, separated by `:`. One sample per row, no header.  
 Example:
    ```
    Sample1:/my-path/sample1_R1.fastq.gz:/my-path/sample1_R2.fastq.gz  
    Sample2:/my-path/sample2_R1.fastq.gz:/my-path/sample2_R2.fastq.gz
    ```
 
-2. `query_seq.fasta`, Fasta file that contains protein sequence of the gene of interest.
+2. `gene_list`, Plain tex file that contains the list of target genes, it's recommended to add prefix organis/project related.
+   Example:
+      ```
+      Crypto_CAP59
+      Crypto_GPD1
+      Crypto_LAC1
+      ```
+4. `queries`, Directory that contains Fasta files for each target gene. File name must match the gene name in gene_list file
 
 ## Outputs:
-1. `gene_output.fasta`, Fasta file that contains nucleotide sequence of the gene of interest for all samples.
-2. `protein_output.fasta`, Fasta file that contains aminoacid sequence of the protein of interest for all samples.
-3. `QC_report.txt`, Tabular text file with tblastn hits information.
+A directory for each gene that contains the following files:
+ 
+1. `aln_gene_output.fasta`, Fasta file that contains aligned nucleotide sequence of the gene of interest for all samples.
+2. `aln_protein_output.fasta`, Fasta file that contains aligned aminoacid sequence of the protein of interest for all samples.
+3. `aln_wnoncoding_gene_output.fasta`, Fasta file that contains aligned nucleotide sequence of the gene of interest plus a 500 nucleotides upstream of the coding gene for all samples.Upstream region include the gene promotor for identifing the tandem repeats (TR34, TR46)
+4. `QC_report.txt`, Tabular text file with blastn hits information.
 <br/><br/>
 **Note**: Review QC report for the following quality metrics:
 
@@ -24,17 +41,17 @@ Example:
    | Percentage of identity (pident) | > 95 %                              |
    | Length                          | Similar to the query sequence length|
 
-
 ## Requirements
+- FaQCs (https://github.com/LANL-Bioinformatics/FaQCs)
 - SPAdes (https://github.com/ablab/spades)  
-- tblastn (https://www.ncbi.nlm.nih.gov/books/NBK569861/)  
-- samtools (https://bioconda.github.io/recipes/samtools/README.html)  
-- EMBOSS transeq (https://anaconda.org/bioconda/emboss)  
+- blast (https://www.ncbi.nlm.nih.gov/books/NBK569861/)  
+- samtools (https://bioconda.github.io/recipes/samtools/README.html)    
 - Clustal omega (https://github.com/GSLBiotech/clustal-omega)  
-
+- mView (https://sourceforge.net/projects/bio-mview/files/bio-mview)
+  
 ## Running MycoGene
-1. Ensure your inputs are placed in the same directory as the MycoGene_v1.0.sh script.
-2. `nohup bash MycoGene_v1.1.sh`
+1. Ensure your inputs are placed in the same directory as the ` MycoGene_blastn_v1.1.sh` and ` Mycogene_multiquery_v2.sh` scripts.
+2. `nohup bash  Mycogene_multiquery_v2.sh`
 
 # Workflow
 ![Flowchart]( ./images/flowchart_MycoGene.png)
@@ -42,8 +59,8 @@ Example:
 # Roadmap
 Some potential enhancements and use cases:
 1. Use multiples genes of interest as query. Potential use for specie identification with more than one marker. Ex. Genes TEF1, rDNA, RPB2 for Fusarium species identification.
-2. To add BLAST type as a user selection parameter (tblastn or blastn), to perform the analysis using a nucleotide sequence as query. Potential use for recovering noncoding sequence region. Ex. Promotor sequence and tandem repats for CYP51 gene for Aspergillus.
-3. Extend the coordinates by a user defined length to recover the flanking regions of the genes of interest. Potential use for recovering sequence upstream of CYP51 gene for Aspergillus, in order to identified tandem repeats in the promotor regions that could be absent in the query.
+2. To add BLAST type as a user selection parameter (tblastn or blastn), to perform the analysis using a nucleotide sequence as query. Potential use for recovering noncoding sequence region. Ex. Promotor sequence and tandem repeats for CYP51 gene for Aspergillus.
+.
 
 # Citations
 If you use MycoGene in your work, please consider this citing repository https://github.com/CDCgov/MycoGene
