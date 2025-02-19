@@ -1,6 +1,9 @@
 # MycoGene: A workflow for extracting specific gene sequences from WGS Illumina paired-end short reads
 
 # Description
+MycoGene is an innovative workflow for Multi-Locus Sequence Typing (MLST) analysis of fungal organisms, designed to streamline your research. By replacing traditional PCR and Sanger sequencing with WGS and simple bioinformatics, MycoGene significantly reduces time and effort in the lab.
+This workflow performs quality controls, generates de novo assemblies, and extracts target gene sequences. The FASTA output files are compatible with various downstream analytical tools for build phylogenetic trees and visualize alignments.
+Among its most useful applications are taxonomic profiling, species identification, and finding mutations linked to antifungal resistance. MycoGene shines particularly in non-model fungi where complete genome annotation is lacking, making it a straight solution for identifying mutation in specific genes when annotate whole-genome variants is unpractical.
 
 ## Inputs:
 1. `samples-paths.txt`, Plain text file that contains the samples name and paths for raw reads, separated by `:`. One sample per row, no header.  
@@ -10,10 +13,18 @@ Example:
    Sample2:/my-path/sample2_R1.fastq.gz:/my-path/sample2_R2.fastq.gz
    ```
 
-2. `query_seq.fasta`, Fasta file that contains nucleotide sequence of the gene CYP51 (AF338659).
-3. `query_aa.fasta`, Fasta file that contains aminoacid sequence of the protein CYP51(AAK73659).
+2. `gene_list`, Plain tex file that contains the list of target genes, it's recommended to add prefix organis/project related.
+   Example:
+   ```
+Crypto_CAP59
+Crypto_GPD1
+Crypto_LAC1
+   ```
+4. `queries`, Directory that contains Fasta files for each target gene. File name must match the gene name in gene_list file
 
 ## Outputs:
+A directory for each gene that contains the following files:
+ 
 1. `aln_gene_output.fasta`, Fasta file that contains aligned nucleotide sequence of the gene of interest for all samples.
 2. `aln_protein_output.fasta`, Fasta file that contains aligned aminoacid sequence of the protein of interest for all samples.
 3. `aln_wnoncoding_gene_output.fasta`, Fasta file that contains aligned nucleotide sequence of the gene of interest plus a 500 nucleotides upstream of the coding gene for all samples.Upstream region include the gene promotor for identifing the tandem repeats (TR34, TR46)
@@ -26,12 +37,6 @@ Example:
    | Percentage of identity (pident) | > 95 %                              |
    | Length                          | Similar to the query sequence length|
 
-5. MycoGen_Afum_CYP51 generates three additional outputs, HTML files with the vusualization for: 
-   1) `data_gene_aln.html`, gene alignment
-   2) `data_upstream-CPY51_aln.html`, 500 nucleotides upstrean and gene sequenced aligned, for identifing the tandem repeats (TR34, TR46)
-   3) `data_protein_aln.html`,protein alignment colored by mismatches in red and 4-nucleotides motifs in green where last higtligthed 
-   aminoacid is a common mutation associated to azoles resistance (G54X, L98H,Y121F,G138X, P216X, F219X, M220X, T289A, Y431X, G448X).
-   ![Flowchart]( ./images/aln_mview_img.png)
 ## Requirements
 - FaQCs (https://github.com/LANL-Bioinformatics/FaQCs)
 - SPAdes (https://github.com/ablab/spades)  
@@ -41,8 +46,8 @@ Example:
 - mView (https://sourceforge.net/projects/bio-mview/files/bio-mview)
   
 ## Running MycoGene
-1. Ensure your inputs are placed in the same directory as the MycoGen_Afum_CYP51.sh script.
-2. `nohup bash MycoGen_Afum_CYP51.sh`
+1. Ensure your inputs are placed in the same directory as the ` MycoGene_blastn_v1.1.sh` and ` Mycogene_multiquery_v2.sh` scripts.
+2. `nohup bash  Mycogene_multiquery_v2.sh`
 
 # Workflow
 ![Flowchart]( ./images/flowchart_MycoGene.png)
