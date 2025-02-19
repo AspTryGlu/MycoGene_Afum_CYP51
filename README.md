@@ -19,11 +19,11 @@ Example:
 
 2. `gene_list`, Plain tex file that contains the list of target genes, it's recommended to add prefix organis/project related.
    Example:
-   ```
-Crypto_CAP59
-Crypto_GPD1
-Crypto_LAC1
-   ```
+      ```
+      Crypto_CAP59
+      Crypto_GPD1
+      Crypto_LAC1
+      ```
 4. `queries`, Directory that contains Fasta files for each target gene. File name must match the gene name in gene_list file
 
 ## Outputs:
