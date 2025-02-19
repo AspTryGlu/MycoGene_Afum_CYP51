@@ -2,7 +2,11 @@
 
 # Description
 MycoGene is an innovative workflow for Multi-Locus Sequence Typing (MLST) analysis of fungal organisms, designed to streamline your research. By replacing traditional PCR and Sanger sequencing with WGS and simple bioinformatics, MycoGene significantly reduces time and effort in the lab.
+
+
 This workflow performs quality controls, generates de novo assemblies, and extracts target gene sequences. The FASTA output files are compatible with various downstream analytical tools for build phylogenetic trees and visualize alignments.
+
+
 Among its most useful applications are taxonomic profiling, species identification, and finding mutations linked to antifungal resistance. MycoGene shines particularly in non-model fungi where complete genome annotation is lacking, making it a straight solution for identifying mutation in specific genes when annotate whole-genome variants is unpractical.
 
 ## Inputs:
