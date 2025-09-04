@@ -9,7 +9,7 @@ This workflow performs quality controls, generates de novo assemblies, and extra
 
 Among its most useful applications are taxonomic profiling, species identification, and finding mutations linked to antifungal resistance. MycoGene shines particularly in non-model fungi where complete genome annotation is lacking, making it a straight solution for identifying mutation in specific genes when annotate whole-genome variants is unpractical.
 
-## Azole resistance mutation in A. fumigatus CPY51 gene
+## Azole resistance mutations in A. fumigatus CPY51 gene
 For using MycoGene to identify mutation in Aspergillus fumigatus CPY51 gene use branch `Afum_CPY51`
 `git clone --single-branch --branch Afum_CPY51 https://github.com/CDCgov/MycoGene.git`
 
