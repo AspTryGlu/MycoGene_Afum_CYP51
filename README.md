@@ -4,7 +4,7 @@
 
 MycoGene_Afum_CPY51 is a workflow for determining the DNA sequence of the CYP51A gene in Aspergillus fumigatus. This pipeline is suitable for determining whether the CYP51A promoter region and coding sequence contain mutations, tandem repeats (Ex. TR34, TR46) and aminoacid changes (Ex.L98H, Y121F) that confer resistance to the triazole antifungal drugs. 
 
-This workflow performs quality controls, generates de novo assemblies, and extracts target gene sequences. The FASTA output files are compatible with various downstream analytical tools for build phylogenetic trees and visualize alignments.
+This workflow performs quality controls, generates de novo assemblies, and extracts target gene sequences. The FASTA output files are compatible with various downstream analytical tools for visualize alignments.
 
 ## Input:
 1. `samples-paths.txt`, Plain text file that contains the samples name and paths for raw reads, separated by `:`. One sample per row, no header.  
@@ -28,7 +28,7 @@ Example:
 
    | QC Metric                       | Threshold                           |
    | ------------------------------- |-------------------------------------|
-   | Percentage of identity (pident) | > 95 %                              |
+   | Percentage of identity (pident) | > 98 %                              |
    | Length                          | Similar to the query sequence length|
 2. `Tandem_repeats_results_from_aln.txt`, Tabular file, the first column list all isolates ID, second column report the length of the gap in the promotor region related to the presence or not of Tandem repeats. The third column report the TR. The TR here is defined based on the gap length from an alignment of all included isolates and a set of controls with known TR, therefore this report can be affected by misaligned sequences if a sample that is not A. fumigatus or a sample with low QC metric are included
 3. `TR_results.txt`, Tabular file, the first column list the sequence name for each isolate and second column report the TR. The TR here is defined based on a Blastn alignment between each sample sequence and the longest sequence recovered from a control isolates with TR53 as a query. This output is redundant with “Tandem_repeats_results_from_aln.txt” but because the here the TR determination is based in pairwise alignment is not affected by the context of all isolates.
@@ -39,23 +39,25 @@ Example:
 6.	`aln_wnoncoding_gene_output.fasta`, Fasta file that contains aligned nucleotide sequence of the CPY51 gene  plus a 500 nucleotides upstream of the coding region, for all samples including positive controls for tandem repeats. Upstream regions include the gene promotor for identifying the tandem repeats (TR34, TR46, TR53)
 7. `data2_protein_aln.html`, visualization of the aligned aminoacid sequence
 8.	`data_upstream-CPY51_aln.html`, visualization of the aligned nucleotide sequence of the CPY51 gene  plus a 500 nucleotides upstream.
+
    
 ![FlowchartTandem Repeats]( ./images/aln_TR_img.jpg)
+
 
 ![FlowchartCoding region]( ./images/aln_protein_img.jpg)
 
 ## Requirements
 - FaQCs (https://github.com/LANL-Bioinformatics/FaQCs)
-- SPAdes (https://github.com/ablab/spades)  
+- SPAdes (Container in the script docker://quay.io/staphb/spades:3.15.5)  
 - blast (https://www.ncbi.nlm.nih.gov/books/NBK569861/)  
 - samtools (https://bioconda.github.io/recipes/samtools/README.html)    
-- Clustal omega (https://github.com/GSLBiotech/clustal-omega)  
+- Clustal omega (Container in the script docker://quay.io/staphb/clustalo:1.2.4)  
 - mView (https://sourceforge.net/projects/bio-mview/files/bio-mview)
-- Biophyton
+- Biophyton (https://biopython.org/)
   
 ## Running MycoGene
-1. Ensure your inputs are placed in the same directory as the ` MycoGene_blastn_v1.1.sh` and ` Mycogene_multiquery_v2.sh` scripts.
-2. `nohup bash  Mycogene_multiquery_v2.sh`
+1. Ensure your input `samples-paths.txt` are placed in the same directory as the `MycoGene_Afum_CYP51_v1.4.sh` script and pre-loaded inputs.
+2. `nohup bash MycoGene_Afum_CYP51_v1.4.sh`
 
 # Workflow
 ![Flowchart]( ./images/MycoGene_workflow.jpg)
