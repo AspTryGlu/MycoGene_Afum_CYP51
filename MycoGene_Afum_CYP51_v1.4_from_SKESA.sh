@@ -1,18 +1,4 @@
 #!/bin/bash -l
-#$ -q all.q
-#$ -cwd
-
-source /etc/profile
-
-module load faqcs/2.09
-#module load spades/3.15.5
-#module load ncbi-magicblast
-module load blast
-module load samtools/1.9
-#module load clustalw2/2.1
-module load emboss/6.6.0
-#module load python/3.11.3
-
 
 mkdir trimmed_reads
 mkdir denovo_assemblies
@@ -128,9 +114,9 @@ mv tblastn_* intermediate-outputs
 
 #vizualization mView
 #./mview -in fasta -html head -css on -coloring mismatch -colormap red aln_protein_output.fasta > data_protein_aln.html
-/scicomp/groups/OID/NCEZID/DFWED/MDB/data_analysis/scratch/mycogene/Afumigatus-cyp51/MycoGene_v1.3/mview -in fasta -html head -css on -coloring mismatch -colormap red -find 'NGKL|DVVY|MMIT|ISYG|IKYG|GFTP|PINFM|EVVDY|LPFG' aln_protein_output.fasta > data2_protein_aln.html
-/scicomp/groups/OID/NCEZID/DFWED/MDB/data_analysis/scratch/mycogene/Afumigatus-cyp51/MycoGene_v1.3/mview -in fasta -html head -css on -coloring identity aln_gene_output.fasta > data_gene_aln.html
-/scicomp/groups/OID/NCEZID/DFWED/MDB/data_analysis/scratch/mycogene/Afumigatus-cyp51/MycoGene_v1.3/mview -in fasta -html head -css on -coloring identity aln_wnoncoding_gene_output.fasta > data_upstream-CPY51_aln.html
+./mview -in fasta -html head -css on -coloring mismatch -colormap red -find 'NGKL|DVVY|MMIT|ISYG|IKYG|GFTP|PINFM|EVVDY|LPFG' aln_protein_output.fasta > data2_protein_aln.html
+./mview -in fasta -html head -css on -coloring identity aln_gene_output.fasta > data_gene_aln.html
+./mview -in fasta -html head -css on -coloring identity aln_wnoncoding_gene_output.fasta > data_upstream-CPY51_aln.html
 
 ##table output
 
