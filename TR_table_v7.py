@@ -1,3 +1,5 @@
+#DISCLAIMER: This script includes code that has been partially or fully generated using AI tools. While efforts have been made to ensure accuracy and functionality, users are advised to review and test the code thoroughly before implementing it.
+
 from Bio import SeqIO
 
 def gap_length_between_patterns(sequence, pattern1, pattern2):
