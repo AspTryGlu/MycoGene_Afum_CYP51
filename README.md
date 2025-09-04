@@ -13,7 +13,7 @@ Example:
    Sample1:/my-path/sample1_R1.fastq.gz:/my-path/sample1_R2.fastq.gz  
    Sample2:/my-path/sample2_R1.fastq.gz:/my-path/sample2_R2.fastq.gz
    ```
-## Preloaded inputs:
+### Pre-loaded inputs:
 2. `query_seq.fasta`, Fasta file that contains nucleotide sequence of the gene CYP51 (AF338659).
 3. `query_aa.fasta` , Fasta file that contains aminoacid sequence of the protein CYP51 (AAK73659).
 4. `ctrl_TR`, Fasta file that contains nucleotide sequences of the gene CYP51 and 500 nucleotides upstream to include the promotor region, for the control sequences.
@@ -22,9 +22,6 @@ Example:
 
 ## Outputs:
 
-1. `aln_gene_output.fasta`, Fasta file that contains aligned nucleotide sequence of the gene of interest for all samples.
-2. `aln_protein_output.fasta`, Fasta file that contains aligned aminoacid sequence of the protein of interest for all samples.
-3. `aln_wnoncoding_gene_output.fasta`, Fasta file that contains aligned nucleotide sequence of the gene of interest plus a 500 nucleotides upstream of the coding gene for all samples.Upstream region include the gene promotor for identifing the tandem repeats (TR34, TR46)
 1. `QC_report.txt`, Tabular text file with blastn hits information.
 <br/><br/>
 **Note**: Review QC report for the following quality metrics:
@@ -42,7 +39,9 @@ Example:
 6.	`aln_wnoncoding_gene_output.fasta`, Fasta file that contains aligned nucleotide sequence of the CPY51 gene  plus a 500 nucleotides upstream of the coding region, for all samples including positive controls for tandem repeats. Upstream regions include the gene promotor for identifying the tandem repeats (TR34, TR46, TR53)
 7. `data2_protein_aln.html`, visualization of the aligned aminoacid sequence
 8.	`data_upstream-CPY51_aln.html`, visualization of the aligned nucleotide sequence of the CPY51 gene  plus a 500 nucleotides upstream.
+   
 ![FlowchartTandem Repeats]( ./images/aln_TR_img.jpg)
+
 ![FlowchartCoding region]( ./images/aln_protein_img.jpg)
 
 ## Requirements
